@@ -8,8 +8,6 @@ services:
       - ALLOW_EMPTY_PASSWORD=yes
     volumes:
       - 'mariadb_data:/bitnami'
-    labels:
-      domainname: '${dname}'
   moodle:
     image: 'bitnami/moodle:3'
     environment:
@@ -23,7 +21,17 @@ services:
     depends_on:
       - mariadb
     labels:
-      domainname: '${dname}'
+      traefik.enable': 'true'
+      traefik.http.middlewares.${COMPOSE_PROJECT_NAME]-https-redirect.redirectscheme.scheme': 'https'
+      traefik.http.routers.${COMPOSE_PROJECT_NAME]-secure.entrypoints': 'https'
+      traefik.http.routers.${COMPOSE_PROJECT_NAME]-secure.rule': 'Host(`${DNS_HOSTNAME}`)'
+      traefik.http.routers.${COMPOSE_PROJECT_NAME]-secure.service': '${COMPOSE_PROJECT_NAME]'
+      traefik.http.routers.${COMPOSE_PROJECT_NAME]-secure.tls': 'true'
+      traefik.http.routers.${COMPOSE_PROJECT_NAME]-secure.tls.certresolver': 'http'
+      traefik.http.routers.${COMPOSE_PROJECT_NAME].entrypoints': 'http'
+      traefik.http.routers.${COMPOSE_PROJECT_NAME].middlewares': '${COMPOSE_PROJECT_NAME]-https-redirect'
+      traefik.http.routers.${COMPOSE_PROJECT_NAME].rule': 'Host(`${DNS_HOSTNAME}`)'
+      traefik.http.services.${COMPOSE_PROJECT_NAME].loadbalancer.server.port': '80'
 volumes:
   mariadb_data:
     driver: local
