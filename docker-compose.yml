@@ -9,7 +9,7 @@ services:
     volumes:
       - 'mariadb_data:/bitnami'
     labels:
-      - domainname: "${dname}"
+      - domainname: '${dname}'
   moodle:
     image: 'bitnami/moodle:3'
     environment:
@@ -23,7 +23,7 @@ services:
     depends_on:
       - mariadb
     labels:
-      - domainname: "${dname}"
+      - domainname: '${dname}'
 volumes:
   mariadb_data:
     driver: local
