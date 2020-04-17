@@ -22,16 +22,16 @@ services:
       - mariadb
     labels:
       - "traefik.enable=true"
-      - "traefik.http.middlewares.${DNS_HOSTNAME}-https-redirect.redirectscheme.scheme=https"
-      - "traefik.http.routers.${DNS_HOSTNAME}-secure.entrypoints=https"
-      - "traefik.http.routers.${DNS_HOSTNAME}-secure.rule=Host(`${DNS_HOSTNAME}`)"
-      - "traefik.http.routers.${DNS_HOSTNAME}-secure.service=${DNS_HOSTNAME}"
-      - "traefik.http.routers.${DNS_HOSTNAME}-secure.tls=true"
-      - "traefik.http.routers.${DNS_HOSTNAME}-secure.tls.certresolver=http"
-      - "traefik.http.routers.${DNS_HOSTNAME}.entrypoints=http"
-      - "traefik.http.routers.${DNS_HOSTNAME}.middlewares=${DNS_HOSTNAME}-https-redirect"
-      - "traefik.http.routers.${DNS_HOSTNAME}.rule=Host(`${DNS_HOSTNAME}`)"
-      - "traefik.http.services.${DNS_HOSTNAME}.loadbalancer.server.port=80"
+      - "traefik.http.middlewares.${INT_NAME}-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.${INT_NAME}-secure.entrypoints=https"
+      - "traefik.http.routers.${INT_NAME}-secure.rule=Host(`${DNS_HOSTNAME}`)"
+      - "traefik.http.routers.${INT_NAME}-secure.service=${INT_NAME}"
+      - "traefik.http.routers.${INT_NAME}-secure.tls=true"
+      - "traefik.http.routers.${INT_NAME}-secure.tls.certresolver=http"
+      - "traefik.http.routers.${INT_NAME}.entrypoints=http"
+      - "traefik.http.routers.${INT_NAME}.middlewares=${INT_NAME}-https-redirect"
+      - "traefik.http.routers.${INT_NAME}.rule=Host(`${DNS_HOSTNAME}`)"
+      - "traefik.http.services.${INT_NAME}.loadbalancer.server.port=80"
 volumes:
   mariadb_data:
     driver: local
