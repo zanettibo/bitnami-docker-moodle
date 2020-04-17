@@ -16,7 +16,6 @@ services:
       - default
     links:
       - "mariadb:mariadb"
-      - "${INT_NAME}_mariadb_1:mariadb"
     environment:
       - MARIADB_HOST=mariasb
       - MARIADB_PORT_NUMBER=3306
