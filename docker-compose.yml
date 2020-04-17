@@ -17,7 +17,7 @@ services:
     links:
       - "mariadb:mariadb"
     environment:
-      - MARIADB_HOST=mariasb
+      - MARIADB_HOST=mariadb
       - MARIADB_PORT_NUMBER=3306
       - MOODLE_DATABASE_USER=bn_moodle
       - MOODLE_DATABASE_NAME=bitnami_moodle
