@@ -26,7 +26,6 @@ services:
       - mariadb
     labels:
       - "traefik.enable=true"
-      - "traefik.docker.network=${INT_NAME}_default"
       - "traefik.http.middlewares.${INT_NAME}-https-redirect.redirectscheme.scheme=https"
       - "traefik.http.routers.${INT_NAME}-secure.entrypoints=https"
       - "traefik.http.routers.${INT_NAME}-secure.rule=Host(`${DNS_HOSTNAME}`)"
