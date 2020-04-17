@@ -15,7 +15,7 @@ services:
     networks:
       - default
     environment:
-      - MARIADB_HOST=mariadb
+      - MARIADB_HOST=${INT_NAME}_mariadb_1
       - MARIADB_PORT_NUMBER=3306
       - MOODLE_DATABASE_USER=bn_moodle
       - MOODLE_DATABASE_NAME=bitnami_moodle
